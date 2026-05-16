@@ -25,8 +25,8 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
-// Get products with pagination (Dashboard Feed) - Protected route
-router.get('/', authenticateToken, async (req, res) => {
+// Get products with pagination (Dashboard Feed) - Public route
+router.get('/', async (req, res) => {
     if (!dbContext.isInitialized) {
         return res.status(503).json({ error: 'System not configured yet.' });
     }
