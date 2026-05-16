@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Database and Configuration
+*.db
+*.sqlite
+*.sqlite3
+data/
+src/db_config.json
+db_config.json
+
+# Archives
+*.zip
+archive_name.zip
+
+# Git
+diff.txt
+
+# OS Files
+.DS_Store
+Thumbs.db

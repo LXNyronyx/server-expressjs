@@ -1,0 +1,32 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+
+# Database and Configuration
+# We ignore these to prevent baking local state or credentials into the image
+*.db
+*.sqlite
+*.sqlite3
+data/
+src/db_config.json
+db_config.json
+
+# Archives
+*.zip
+archive_name.zip
+
+# Git
+diff.txt
+
+# OS Files
+.DS_Store
+Thumbs.db
