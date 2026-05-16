@@ -5,10 +5,8 @@
     "context": ".."
   },
   
-  // Features to add to the dev container. More info: https://containers.dev/features
   "features": {},
 
-  // Configure tool-specific properties.
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,12 +17,9 @@
     }
   },
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [3000],
 
-  // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "cd src && npm install",
 
-  // Set the default user to 'node' instead of 'root'
   "remoteUser": "node"
 }
