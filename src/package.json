@@ -1,0 +1,31 @@
+{
+  "name": "@lxnyronyx/express-server",
+  "version": "0.0.0",
+  "main": "server.js",
+  "homepage": "https://lxnyronyx.github.io/website",
+  "license": "SEE LICENSE IN https://lxnyronyx.github.io/website/license",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LXNyronyx/server-expressjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LXNyronyx/server-expressjs/issues"
+  },
+  "author": {
+    "name": "JetsadaWijit",
+    "url": "https://jetsadawijit.github.io"
+  },
+  "description": "Express backend for shopping app with dynamic DB setup.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.22.3",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^6.0.1"
+  }
+}
