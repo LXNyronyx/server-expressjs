@@ -3,8 +3,9 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const dbContext = require('../db');
 
-// Note: Ensure this matches the secret used in auth.js
-const JWT_SECRET = 'YOUR_SUPER_SECRET_KEY';
+// Ensure this matches the secret used in auth.js
+const ENV_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = ENV_SECRET || 'your_jwt_secret_key';
 
 // JWT Authentication Middleware
 const authenticateToken = (req, res, next) => {
