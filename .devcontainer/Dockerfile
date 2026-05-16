@@ -1,19 +1,13 @@
-# Use the official Node.js LTS image as the base
-FROM node:20-bookworm-slim
-
-# Install basic development tools and clean up cache to reduce image size
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    ca-certificates \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Use the official Microsoft Dev Container image for Node.js
+# This image already includes git, curl, zsh, and a configured 'node' user
+FROM mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm
 
 # Set the working directory inside the container
 WORKDIR /workspace
 
-# Set the default user to 'node' for security best practices
-USER node
+# [Optional] Place any custom OS-level package installations here if needed in the future
+# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+#     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 # Expose the default port for Express applications
 EXPOSE 3000
