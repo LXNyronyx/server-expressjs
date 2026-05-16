@@ -4,7 +4,12 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dbContext = require('../db');
 
-const JWT_SECRET = 'YOUR_SUPER_SECRET_KEY'; // In production, move this to ENV vars
+// Ensure JWT_SECRET is explicitly configured in production environments
+const ENV_SECRET = process.env.JWT_SECRET;
+if (!ENV_SECRET && process.env.NODE_ENV === 'production') {
+    throw new Error('CRITICAL: JWT_SECRET environment variable is missing in production mode!');
+}
+const JWT_SECRET = ENV_SECRET || 'your_jwt_secret_key';
 
 router.post('/login', async (req, res) => {
     if (!dbContext.isInitialized) {
