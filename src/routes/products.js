@@ -1,9 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const dbContext = require('../db');
 
-// Get products with pagination (Dashboard Feed)
-router.get('/', async (req, res) => {
+// Note: Ensure this matches the secret used in auth.js
+const JWT_SECRET = 'YOUR_SUPER_SECRET_KEY';
+
+// JWT Authentication Middleware
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ error: 'Unauthorized: Missing token' });
+    }
+
+    jwt.verify(token, JWT_SECRET, (err, user) => {
+        if (err) {
+            return res.status(401).json({ error: 'Unauthorized: Invalid token' });
+        }
+        req.user = user;
+        next();
+    });
+};
+
+// Get products with pagination (Dashboard Feed) - Protected route
+router.get('/', authenticateToken, async (req, res) => {
     if (!dbContext.isInitialized) {
         return res.status(503).json({ error: 'System not configured yet.' });
     }
@@ -32,8 +54,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Create a new product (For testing/admin)
-router.post('/', async (req, res) => {
+// Create a new product (For testing/admin) - Protected route
+router.post('/', authenticateToken, async (req, res) => {
     if (!dbContext.isInitialized) return res.status(503).json({ error: 'System not configured yet.' });
 
     try {
